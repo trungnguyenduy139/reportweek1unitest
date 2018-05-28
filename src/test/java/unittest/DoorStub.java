@@ -6,8 +6,14 @@ import main.java.unittest.State;
 public class DoorStub implements IDoor {
 
     private State mState = State.CLOSED; //default door state
+    public static final String NULL_STATE_EXCEPTION_MSG = "null state exception msg";
+    private int mDoorId;
 
-    private static final String MOCK_DOOR = "MOCK DOOR";
+    public DoorStub(int doorId) {
+        mDoorId = doorId;
+    }
+
+    private static final String MOCK_DOOR = "Mock door ";
 
     @Override
     public State getState() {
@@ -16,24 +22,24 @@ public class DoorStub implements IDoor {
 
     @Override
     public int getDoorId() {
-        return 0;
+        return mDoorId;
     }
 
     @Override
     public String getDoorName() {
-        return MOCK_DOOR;
+        return MOCK_DOOR + mDoorId;
     }
 
     @Override
     public void setDoorState(State state) {
         if (state == null) {
-            throw new IllegalArgumentException();
+            throw new NullPointerException(NULL_STATE_EXCEPTION_MSG);
         }
         mState = state;
     }
 
     @Override
     public String getDoorStateStringType() {
-        return getState() == State.OPENED ? "Door Opened" : "Door closed";
+        return getState() == State.OPENED ? getDoorName() + " Opened" : getDoorName()+ " Closed";
     }
 }

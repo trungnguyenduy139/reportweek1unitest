@@ -16,7 +16,7 @@ public class ControllerTest {
     @Before
     public void setup() {
         mController = new ControllerStub();
-        mDoor = new DoorStub();
+        mDoor = new DoorStub(1);
     }
 
     @Test
@@ -27,10 +27,9 @@ public class ControllerTest {
     }
 
     @Test
-    public void closeDoorMethodShouldWorkFine() {
+    public void closeDoorMethod() {
         // exercise
-        mController.setDoor(mDoor);
-        mController.closeDoor();
+        mController.closeDoor(mDoor);
 
         State expectedState = State.CLOSED;
 
@@ -39,10 +38,9 @@ public class ControllerTest {
     }
 
     @Test
-    public void openDoorMethodShouldWorkFine() {
+    public void openDoorMethod() {
         // exercise
-        mController.setDoor(mDoor);
-        mController.openDoor();
+        mController.openDoor(mDoor);
 
         State expectedState = State.OPENED;
 
@@ -51,7 +49,7 @@ public class ControllerTest {
     }
 
     @Test (expected = IllegalArgumentException.class)
-    public void shouldThrowExceptionWhenDoorNull() {
+    public void shouldThrowIllegalArgumentExceptionWhenDoorIsNull() {
         // exercise
         mController.setDoor(null);
         mController.getCurrentState();

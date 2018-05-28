@@ -1,6 +1,6 @@
 package test.java.unittest;
 
-import main.java.unittest.DoorInjector;
+import main.java.unittest.IDoor;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,12 +18,14 @@ public class InjectorTest {
 
     @Test
     public void injectorShouldNotProvideNullDoor () {
+        // exercise
+        IDoor door = mInjectorStub.provideDoor(1);
         // verify
-        assertNotNull(mInjectorStub.provideDoor());
+        assertNotNull(door);
     }
 
     @Test
-    public void doorInjectorShouldBeCorrectType() {
-        assertThat(mInjectorStub.provideDoor(), instanceOf(DoorStub.class));
+    public void doorInjectorShouldBeCorrectedType() {
+        assertThat(mInjectorStub.provideDoor(1), instanceOf(DoorStub.class));
     }
 }

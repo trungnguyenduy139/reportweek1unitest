@@ -16,12 +16,14 @@ public class Controller {
         return mDoor;
     }
 
-    public void closeDoor() {
+    public void closeDoor(IDoor door) {
+        mDoor = door;
         if (mDoor.getState() == State.OPENED)
             mDoor.setDoorState(State.CLOSED);
     }
 
-    public void openDoor() {
+    public void openDoor(IDoor door) {
+        mDoor = door;
         if (mDoor.getState() == State.CLOSED) {
             mDoor.setDoorState(State.OPENED);
         }
