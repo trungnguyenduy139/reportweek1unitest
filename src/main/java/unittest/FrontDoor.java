@@ -2,8 +2,6 @@ package main.java.unittest;
 
 public class FrontDoor implements IDoor {
 
-    boolean mIsOpened = false;
-
     State mState = State.CLOSED;
 
     @Override
@@ -23,6 +21,9 @@ public class FrontDoor implements IDoor {
 
     @Override
     public void setDoorState(State state) {
+        if (state == null) {
+            throw new IllegalArgumentException();
+        }
         mState = state;
     }
 }

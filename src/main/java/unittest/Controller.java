@@ -1,7 +1,7 @@
 package main.java.unittest;
 
 public class Controller {
-    IDoor mDoor;
+    protected IDoor mDoor;
 
     public Controller() {
 

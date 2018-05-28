@@ -5,9 +5,9 @@ import main.java.unittest.State;
 
 public class DoorMock implements IDoor {
 
-    private State mState = State.CLOSED;
+    private State mState = State.CLOSED; //default door state
 
-    public static final String MOCK_DOOR = "MOCK DOOR";
+    private static final String MOCK_DOOR = "MOCK DOOR";
 
     @Override
     public State getState() {
@@ -26,6 +26,9 @@ public class DoorMock implements IDoor {
 
     @Override
     public void setDoorState(State state) {
+        if (state == null) {
+            throw new IllegalArgumentException();
+        }
         mState = state;
     }
 }
