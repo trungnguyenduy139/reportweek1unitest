@@ -2,7 +2,7 @@ package main.java.unittest;
 
 public class FrontDoor implements IDoor {
 
-    State mState = State.CLOSED;
+    private State mState = State.CLOSED;
 
     @Override
     public State getState() {
@@ -25,5 +25,12 @@ public class FrontDoor implements IDoor {
             throw new IllegalArgumentException();
         }
         mState = state;
+    }
+
+    @Override
+    public String getDoorStateStringType() {
+        if (getState() == null)
+            throw new IllegalArgumentException();
+        return getState() == State.OPENED ? "Door Opened" : "Door Closed";
     }
 }

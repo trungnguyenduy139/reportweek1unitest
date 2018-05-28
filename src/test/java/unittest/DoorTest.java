@@ -10,64 +10,76 @@ import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.*;
 
 public class DoorTest {
-    private IDoor mDoorMock;
+    private IDoor mDoor;
 
     @Before
     public void setup() {
         // setup phase
-        mDoorMock = new DoorMock();
+        mDoor = new DoorStub();
     }
 
     @Test
     public void shouldOpenedState (){
         State expectedState = State.OPENED;
         // exercise phase
-        mDoorMock.setDoorState(State.OPENED);
+        mDoor.setDoorState(State.OPENED);
         // verify phase
-        assertSame(expectedState, mDoorMock.getState());
+        assertSame(expectedState, mDoor.getState());
     }
 
     @Test
     public void shouldClosedState (){
         State expectedState = State.CLOSED;
         // exercise phase
-        mDoorMock.setDoorState(State.CLOSED);
+        mDoor.setDoorState(State.CLOSED);
         // verify phase
-        assertSame(expectedState, mDoorMock.getState());
+        assertSame(expectedState, mDoor.getState());
     }
 
     @Test
     public void doorStateShouldOnlyIsClosedOrOpened() {
         // verify phase
-        assertTrue(mDoorMock.getState() == State.CLOSED || mDoorMock.getState() == State.OPENED);
+        assertTrue(mDoor.getState() == State.CLOSED || mDoor.getState() == State.OPENED);
     }
 
     @Test
     public void doorNameShouldNotBeNull () {
         // verify
-        assertNotNull(mDoorMock.getDoorName());
+        assertNotNull(mDoor.getDoorName());
     }
 
     @Test
     public void doorNameShouldInstanceOfString () {
         // verify
-        assertThat(mDoorMock.getDoorName(), instanceOf(String.class));
+        assertThat(mDoor.getDoorName(), instanceOf(String.class));
     }
 
     @Test
     public void doorIdShouldBeInt() {
         // verify
-        assertThat(mDoorMock.getDoorId(), instanceOf(Integer.class));
+        assertThat(mDoor.getDoorId(), instanceOf(Integer.class));
     }
 
     @Test
     public void doorIdShouldIsOneOrZero() {
         // verify
-        assertEquals(0, mDoorMock.getDoorId());
+        assertEquals(0, mDoor.getDoorId());
     }
 
     @Test (expected = IllegalArgumentException.class)
     public void shouldThrowExceptionWhenStateNull() {
-        mDoorMock.setDoorState(null);
+        mDoor.setDoorState(null);
+    }
+
+    @Test
+    public void doorStateStringTypeShouldBeString() {
+        // verify
+        assertThat(mDoor.getDoorStateStringType(), instanceOf(String.class));
+    }
+
+    @Test
+    public void doorStateShouldBeCorrectFormat() {
+        // verify
+        assertThat(mDoor.getState(), instanceOf(State.class));
     }
 }

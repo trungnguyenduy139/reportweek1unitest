@@ -3,6 +3,7 @@ package main.java.unittest;
 public class Controller {
     protected IDoor mDoor;
 
+    // empty constructor
     public Controller() {
 
     }
@@ -24,5 +25,11 @@ public class Controller {
         if (mDoor.getState() == State.CLOSED) {
             mDoor.setDoorState(State.OPENED);
         }
+    }
+
+    public State getCurrentState() {
+        if (mDoor == null)
+            throw new IllegalArgumentException();
+        return mDoor.getState();
     }
 }

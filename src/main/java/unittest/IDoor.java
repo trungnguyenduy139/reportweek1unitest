@@ -5,4 +5,5 @@ public interface IDoor {
     int getDoorId();
     String getDoorName();
     void setDoorState(State state);
+    String getDoorStateStringType();
 }

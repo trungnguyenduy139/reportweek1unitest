@@ -1,21 +1,29 @@
 package test.java.unittest;
 
+import main.java.unittest.DoorInjector;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.*;
 
 public class InjectorTest {
-    private InjectorMock mInjectorMock;
+    private InjectorStub mInjectorStub;
 
     @Before
     public void setup() {
         // setup
-        mInjectorMock = new InjectorMock();
+        mInjectorStub = new InjectorStub();
     }
 
     @Test
     public void injectorShouldNotProvideNullDoor () {
         // verify
-        assertNotNull(mInjectorMock.provideDoor());
+        assertNotNull(mInjectorStub.provideDoor());
+    }
+
+    @Test
+    public void doorInjectorShouldBeCorrectType() {
+        assertThat(mInjectorStub.provideDoor(), instanceOf(DoorStub.class));
     }
 }

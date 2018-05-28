@@ -4,7 +4,7 @@ import main.java.unittest.Controller;
 import main.java.unittest.IDoor;
 import main.java.unittest.State;
 
-public class ControllerMock extends Controller {
+public class ControllerStub extends Controller {
     @Override
     public IDoor getDoor() {
         return super.getDoor();
@@ -16,6 +16,8 @@ public class ControllerMock extends Controller {
     }
 
     public State getCurrentState() {
+        if (mDoor == null)
+            throw new IllegalArgumentException();
         return mDoor.getState();
     }
 }

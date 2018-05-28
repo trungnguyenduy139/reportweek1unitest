@@ -3,7 +3,7 @@ package test.java.unittest;
 import main.java.unittest.IDoor;
 import main.java.unittest.State;
 
-public class DoorMock implements IDoor {
+public class DoorStub implements IDoor {
 
     private State mState = State.CLOSED; //default door state
 
@@ -30,5 +30,10 @@ public class DoorMock implements IDoor {
             throw new IllegalArgumentException();
         }
         mState = state;
+    }
+
+    @Override
+    public String getDoorStateStringType() {
+        return getState() == State.OPENED ? "Door Opened" : "Door closed";
     }
 }

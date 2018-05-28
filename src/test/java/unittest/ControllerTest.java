@@ -9,27 +9,27 @@ import static org.junit.Assert.assertSame;
 
 public class ControllerTest {
 
-    private ControllerMock mController;
+    private ControllerStub mController;
 
-    private DoorMock mMockDoor;
+    private DoorStub mDoor;
 
     @Before
     public void setup() {
-        mController = new ControllerMock();
-        mMockDoor = new DoorMock();
+        mController = new ControllerStub();
+        mDoor = new DoorStub();
     }
 
     @Test
     public void doorShouldNotBeNull() {
         // exercise
-        mController.setDoor(mMockDoor);
+        mController.setDoor(mDoor);
         assertNotNull(mController.getDoor());
     }
 
     @Test
     public void closeDoorMethodShouldWorkFine() {
         // exercise
-        mController.setDoor(mMockDoor);
+        mController.setDoor(mDoor);
         mController.closeDoor();
 
         State expectedState = State.CLOSED;
@@ -41,13 +41,20 @@ public class ControllerTest {
     @Test
     public void openDoorMethodShouldWorkFine() {
         // exercise
-        mController.setDoor(mMockDoor);
+        mController.setDoor(mDoor);
         mController.openDoor();
 
         State expectedState = State.OPENED;
 
         // verify
         assertSame(expectedState, mController.getCurrentState());
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void shouldThrowExceptionWhenDoorNull() {
+        // exercise
+        mController.setDoor(null);
+        mController.getCurrentState();
     }
 
 }
