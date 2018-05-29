@@ -1,10 +1,10 @@
 package test.java.unittest;
 
-import main.java.unittest.Controller;
+import main.java.unittest.ControllerImp;
 import main.java.unittest.IDoor;
 import main.java.unittest.State;
 
-public class ControllerStub extends Controller {
+public class ControllerStub extends ControllerImp {
     @Override
     public IDoor getDoor() {
         return super.getDoor();

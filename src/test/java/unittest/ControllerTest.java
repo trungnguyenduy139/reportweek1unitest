@@ -29,7 +29,8 @@ public class ControllerTest {
     @Test
     public void closeDoorMethod() {
         // exercise
-        mController.closeDoor(mDoor);
+        mController.setDoor(mDoor);
+        mController.closeDoor();
 
         State expectedState = State.CLOSED;
 
@@ -40,7 +41,8 @@ public class ControllerTest {
     @Test
     public void openDoorMethod() {
         // exercise
-        mController.openDoor(mDoor);
+        mController.setDoor(mDoor);
+        mController.openDoor();
 
         State expectedState = State.OPENED;
 
@@ -55,4 +57,8 @@ public class ControllerTest {
         mController.getCurrentState();
     }
 
+    @Test
+    public void setController() {
+
+    }
 }

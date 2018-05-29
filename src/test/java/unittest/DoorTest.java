@@ -21,7 +21,7 @@ public class DoorTest {
     @Before
     public void setup() {
         // setup phase
-        mDoor = new DoorStub(1);
+        mDoor = new DoorStub(2);
     }
 
     @Test

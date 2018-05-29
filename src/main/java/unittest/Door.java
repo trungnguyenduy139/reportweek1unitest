@@ -1,19 +1,14 @@
-package test.java.unittest;
+package main.java.unittest;
 
-import main.java.unittest.IDoor;
-import main.java.unittest.State;
+public class Door implements IDoor {
 
-public class DoorStub implements IDoor {
-
-    private State mState = State.CLOSED; //default door state
     public static final String NULL_STATE_EXCEPTION_MSG = "null state exception msg";
+    private State mState = State.CLOSED; // default door state
     private int mDoorId;
 
-    public DoorStub(int doorId) {
+    public Door(int doorId) {
         mDoorId = doorId;
     }
-
-    private static final String MOCK_DOOR = "Mock door ";
 
     @Override
     public State getState() {
@@ -27,7 +22,7 @@ public class DoorStub implements IDoor {
 
     @Override
     public String getDoorName() {
-        return MOCK_DOOR + mDoorId;
+        return "Door " + mDoorId;
     }
 
     @Override
@@ -38,10 +33,10 @@ public class DoorStub implements IDoor {
         mState = state;
     }
 
-
-
     @Override
     public String getDoorStateStringType() {
-        return getState() == State.OPENED ? getDoorName() + " Opened" : getDoorName()+ " Closed";
+        if (getState() == null)
+            throw new NullPointerException(NULL_STATE_EXCEPTION_MSG);
+        return getState() == State.OPENED ? getDoorName() +" Opened" : getDoorName()+ " Closed";
     }
 }
