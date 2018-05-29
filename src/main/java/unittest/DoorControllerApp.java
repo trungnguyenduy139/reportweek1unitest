@@ -2,19 +2,17 @@ package main.java.unittest;
 
 public class DoorControllerApp {
     public static void main(String[] args) {
-        Controller controller = new Controller();
-        DoorInjector doorInjector = new FrontDoorInjector();
-        IDoor frontDoor1 = doorInjector.provideDoor(1); // inject door 1
-        IDoor frontDoor2 = doorInjector.provideDoor(2); // inject door 2
-        controller.openDoor(frontDoor1);
-        System.out.println(frontDoor1.getDoorStateStringType());
-        controller.closeDoor(frontDoor1);
-        System.out.println(frontDoor1.getDoorStateStringType());
-        controller.openDoor(frontDoor2);
-        System.out.println(frontDoor2.getDoorStateStringType());
-        controller.closeDoor(frontDoor2);
-        System.out.println(frontDoor2.getDoorStateStringType());
-        controller.openDoor(frontDoor2);
-        System.out.println(frontDoor2.getDoorStateStringType());
+        IController controllerBackDoor = new ControllerBackDoor();
+        ControllerManager manager = new ControllerManager(controllerBackDoor);
+        manager.openDoor();
+        manager.setController(controllerBackDoor);
+        manager.closeDoor();
+        IDoor door2 = new DoorInjectorImp().provideDoor(2);
+        manager.setDoor(door2);
+        manager.openDoor();
+
+        IController controllerFrontDoor = new ControllerFrontDoor();
+        manager.setController(controllerFrontDoor);
+        manager.openDoor();
     }
 }
